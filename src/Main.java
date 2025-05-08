@@ -42,19 +42,19 @@ public class Main {
                     break;
 
                 case 3:
-
+                    l.promedio();
                     break;
 
                 case 4:
-
+                    l.maxima();
                     break;
 
                 case 5:
-
+                    l.minima();
                     break;
 
                 case 6:
-
+                    l.desviacion();
                     break;
 
                 case 7:
@@ -77,11 +77,11 @@ public class Main {
                     break;
 
                 case 11:
-
+                    l.respaldo();
                     break;
 
                 case 12:
-
+                    l.consultarRespaldo();
                     break;
 
                 case 13:
@@ -92,9 +92,6 @@ public class Main {
                     System.out.println("Ingresa una opcion del menu");
                     break;
             }
-        } while (opc != 12);
-
-
-
+        } while (opc != 13);
     }
 }
