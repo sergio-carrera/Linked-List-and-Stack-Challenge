@@ -98,7 +98,7 @@ public class Lista {
     //Metodo para eliminar un dato
     public void eliminar(String dato) {
         if (estaVacia()) {
-            System.out.println("La lista esta vacia");;
+            System.out.println("La lista esta vacia");
         } else {
             if (inicio == fin && dato.equals(inicio.dato)) { //Eliminar primer y único valor en la lista
                 inicio = fin = null;
@@ -125,7 +125,7 @@ public class Lista {
         }
     }
 
-    //Metodo para imprimir toda la lista
+    //Metodo para consultar toda la lista
     public void mostrar() {
         if (estaVacia()) {
             System.out.println("La lista esta vacia");
@@ -139,6 +139,74 @@ public class Lista {
                 System.out.println("Apellido: " + subs[1]);
                 System.out.println("Nota: " + subs[2]);
                 System.out.println("\n");
+                temporal = temporal.siguiente;
+            }
+        }
+    }
+
+    //Metodo para consultar a un estudiante especifico
+    public void consultar (String dato) {
+        boolean hayEstudiante = false;
+        if (estaVacia()) {
+            System.out.println("La lista esta vacia");
+        } else {
+            Nodo temporal;
+            temporal = inicio;
+            while (temporal != null) {
+                String[] subs = temporal.dato.split(",");
+                if (temporal.dato.equals(dato)) {
+                    hayEstudiante = true;
+                    System.out.println("-Estudiante-");
+                    System.out.println("Nombre: " + subs[0]);
+                    System.out.println("Apellido: " + subs[1]);
+                    System.out.println("Nota: " + subs[2]);
+                    System.out.println("\n");
+                }
+                temporal = temporal.siguiente;
+            }
+            if (!hayEstudiante) {
+                System.out.println("Lo sentimos, no hemos encontrado al estudiante: " + dato);
+            }
+        }
+    }
+
+    //Metood para consultar estudiantes con notas superiores o iguales a 70 (aprobados)
+    public void consultarAprobados () {
+        if (estaVacia()) {
+            System.out.println("La lista esta vacia");
+        } else {
+            Nodo temporal;
+            temporal = inicio;
+            while (temporal != null) {
+                String[] subs = temporal.dato.split(",");
+                if (Integer.parseInt(subs[2]) >= 70) {
+                    System.out.println("-Estudiante aprobado-");
+                    System.out.println("Nombre: " + subs[0]);
+                    System.out.println("Apellido: " + subs[1]);
+                    System.out.println("Nota: " + subs[2]);
+                    System.out.println("\n");
+                }
+                temporal = temporal.siguiente;
+            }
+        }
+    }
+
+    //Metodo para consultar estudiantes con notas inferiores a 70 (reprobados)
+    public void consultarReprobados () {
+        if (estaVacia()) {
+            System.out.println("La lista esta vacia");
+        } else {
+            Nodo temporal;
+            temporal = inicio;
+            while (temporal != null) {
+                String[] subs = temporal.dato.split(",");
+                if (Integer.parseInt(subs[2]) < 70) {
+                    System.out.println("-Estudiante reprobado-");
+                    System.out.println("Nombre: " + subs[0]);
+                    System.out.println("Apellido: " + subs[1]);
+                    System.out.println("Nota: " + subs[2]);
+                    System.out.println("\n");
+                }
                 temporal = temporal.siguiente;
             }
         }

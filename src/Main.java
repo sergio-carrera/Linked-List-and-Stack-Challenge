@@ -18,8 +18,11 @@ public class Main {
             System.out.println("6. Desviacion estandar de notas");
             System.out.println("7. Consultar lista de estudiantes");
             System.out.println("8. Consultar estudiante especifico");
-            System.out.println("9. Respaldo de notas");
-            System.out.println("10 Salir del programa");
+            System.out.println("9. Consultar estudiantes aprobados");
+            System.out.println("10. Consultar estudiantes reprobados");
+            System.out.println("11. Respaldar lista");
+            System.out.println("12. Consultar ultimo respaldo de notas");
+            System.out.println("13. Salir del programa");
             System.out.print("Selecciona una opcion: ");
             opc = sc.nextInt();
 
@@ -59,13 +62,29 @@ public class Main {
                     break;
 
                 case 8:
-
+                    sc.nextLine();
+                    System.out.print("Ingresa un estudiante a consultar: ");
+                    dato = sc.nextLine();
+                    l.consultar(dato);
                     break;
 
                 case 9:
+                    l.consultarAprobados();
                     break;
 
                 case 10:
+                    l.consultarReprobados();
+                    break;
+
+                case 11:
+
+                    break;
+
+                case 12:
+
+                    break;
+
+                case 13:
                     System.out.println("Muchas gracias por usar este programa ;D");
                     break;
 
@@ -73,7 +92,7 @@ public class Main {
                     System.out.println("Ingresa una opcion del menu");
                     break;
             }
-        } while (opc != 10);
+        } while (opc != 12);
 
 
 
