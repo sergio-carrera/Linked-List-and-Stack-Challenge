@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.util.Arrays;
 
 public class Lista {
     private Nodo inicio;
@@ -38,21 +39,21 @@ public class Lista {
 
             if (subs.length < 2 || subs[0] == null || subs[0].isEmpty()) {
                 System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
+                System.out.println("01");
                 return false;
             } else if (subs.length < 2 || subs[1] == null || subs[1].isEmpty()) {
                 System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
+                System.out.println("02");
                 return false;
             } else if (subs.length < 2 || subs[2] == null || subs[2].isEmpty()) {
                 System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
+                System.out.println("03");
                 return false;
             }
 
             caracter2 = subs[0].toCharArray();
             for (int i = 0; i < caracter2.length; i++) {
-                if (String.valueOf(caracter2[i]) == null || String.valueOf(caracter2[i]).isBlank() || String.valueOf(caracter2[i]).isEmpty()) {
-                    System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
-                    return false;
-                } else {
+                if (!Character.isLetter(caracter2[i])) {
                     System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
                     return false;
                 }
@@ -60,10 +61,7 @@ public class Lista {
 
             caracter3 = subs[1].toCharArray();
             for (int i = 0; i < caracter3.length; i++) {
-                if (String.valueOf(caracter3[i]) == null || String.valueOf(caracter3[i]).isBlank() || String.valueOf(caracter3[i]).isEmpty()) {
-                    System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
-                    return false;
-                } else {
+                if (!Character.isLetter(caracter3[i])) {
                     System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
                     return false;
                 }
@@ -71,10 +69,7 @@ public class Lista {
 
             caracter4 = subs[2].toCharArray();
             for (int i = 0; i < caracter4.length; i++) {
-                if (String.valueOf(caracter4[i]) == null || String.valueOf(caracter4[i]).isBlank() || String.valueOf(caracter4[i]).isEmpty()) {
-                    System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
-                    return false;
-                } else {
+                if (!Character.isDigit(caracter4[i])) {
                     System.out.println("La informacion no cumple con los requisitos, por favor seguir la normativa de ingreso de datos");
                     return false;
                 }
@@ -100,5 +95,53 @@ public class Lista {
         }
     }
 
+    //Metodo para eliminar un dato
+    public void eliminar(String dato) {
+        if (estaVacia()) {
+            System.out.println("La lista esta vacia");;
+        } else {
+            if (inicio == fin && dato.equals(inicio.dato)) { //Eliminar primer y único valor en la lista
+                inicio = fin = null;
+                System.out.println("Se ha eliminado correctamente al estudiante de la lista");
+            } else if (dato.equals(inicio.dato)) { //Eliminar primer pero NO unico valor en la lista
+                inicio = inicio.siguiente;
+                System.out.println("Se ha eliminado correctamente al estudiante de la lista");
+            } else { //Proceso para eliminar a estudiantes en medio de la lista o al final
+                Nodo temporal, anterior;
+                anterior = inicio;
+                temporal = inicio.siguiente;
+                while (temporal != null && !temporal.dato.equals(dato)) {
+                    anterior = anterior.siguiente;
+                    temporal = temporal.siguiente;
+                }
+                if (temporal != null) {
+                    anterior.siguiente = temporal.siguiente; //Eliminar valor en medio de la lista
+                    System.out.println("Se ha eliminado correctamente al estudiante de la lista");
+                    if (temporal == fin) { //Eliminar al ultimo valor de la lista
+                        fin = anterior;
+                    }
+                }
+            }
+        }
+    }
+
+    //Metodo para imprimir toda la lista
+    public void mostrar() {
+        if (estaVacia()) {
+            System.out.println("La lista esta vacia");
+        } else {
+            Nodo temporal;
+            temporal = inicio;
+            while (temporal != null) {
+                String[] subs = temporal.dato.split(",");
+                System.out.println("-Estudiante-");
+                System.out.println("Nombre: " + subs[0]);
+                System.out.println("Apellido: " + subs[1]);
+                System.out.println("Nota: " + subs[2]);
+                System.out.println("\n");
+                temporal = temporal.siguiente;
+            }
+        }
+    }
 
 }
